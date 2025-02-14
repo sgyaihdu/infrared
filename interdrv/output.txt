@@ -1,0 +1,150 @@
+diff -r sysconfig12/pin_mux.c sysconfig/pin_mux.c
+6a7
+> //#include "stdio.h"
+10a12
+>     #if 0
+29a32,52
+>     #endif
+>     printk("*************************bt1120\n");
+>     void *iocfg2_base = sys_config_get_reg_iocfg2();
+> 
+>     sys_writel(iocfg2_base, 0x0034, 0x1006); /* VI_CLK */
+>     sys_writel(iocfg2_base, 0x0038, 0x1006); /* VI_DATA7 */
+>     sys_writel(iocfg2_base, 0x003C, 0x1006); /* VI_DATA6 */
+>     sys_writel(iocfg2_base, 0x0040, 0x1005); /* VI_DATA8 */
+>     sys_writel(iocfg2_base, 0x0044, 0x1005); /* VI_DATA9 */
+>     sys_writel(iocfg2_base, 0x0048, 0x1206); /* VI_DATA10 */
+>     sys_writel(iocfg2_base, 0x004C, 0x1206); /* VI_DATA11 */
+>     sys_writel(iocfg2_base, 0x0050, 0x1206); /* VI_DATA14 */
+>     sys_writel(iocfg2_base, 0x0054, 0x1206); /* VI_DATA15 */
+>     sys_writel(iocfg2_base, 0x0058, 0x1206); /* VI_DATA12 */
+>     sys_writel(iocfg2_base, 0x005C, 0x1206); /* VI_DATA13 */
+>     sys_writel(iocfg2_base, 0x0060, 0x1206); /* VI_DATA4 */
+>     sys_writel(iocfg2_base, 0x0064, 0x1206); /* VI_DATA5 */
+>     sys_writel(iocfg2_base, 0x0068, 0x1206); /* VI_DATA0 */
+>     sys_writel(iocfg2_base, 0x006C, 0x1206); /* VI_DATA1 */
+>     sys_writel(iocfg2_base, 0x0070, 0x1206); /* VI_DATA2 */
+>     sys_writel(iocfg2_base, 0x0024, 0x1206); /* VI_DATA3 */
+33a57,67
+>     // void *iocfg2_base = sys_config_get_reg_iocfg2();
+>     // sys_writel(iocfg2_base, 0x0024, 0x1006); /* VI_DATA3 */
+>     // sys_writel(iocfg2_base, 0x0028, 0x1006); /* VI_DATA1 */
+>     // sys_writel(iocfg2_base, 0x002C, 0x1006); /* VI_DATA0 */
+>     // sys_writel(iocfg2_base, 0x0030, 0x1006); /* VI_DATA2 */
+>     // sys_writel(iocfg2_base, 0x0034, 0x1006); /* VI_CLK */
+>     // sys_writel(iocfg2_base, 0x0038, 0x1006); /* VI_DATA7 */
+>     // sys_writel(iocfg2_base, 0x003C, 0x1006); /* VI_DATA6 */
+>     // sys_writel(iocfg2_base, 0x0040, 0x1006); /* VI_DATA4 */
+>     // sys_writel(iocfg2_base, 0x0044, 0x1006); /* VI_DATA5 */
+>     printk("*************************bt656\n");
+35,40c69,77
+<     sys_writel(iocfg2_base, 0x0024, 0x1006); /* VI_DATA3 */
+<     sys_writel(iocfg2_base, 0x0028, 0x1006); /* VI_DATA1 */
+<     sys_writel(iocfg2_base, 0x002C, 0x1006); /* VI_DATA0 */
+<     sys_writel(iocfg2_base, 0x0030, 0x1006); /* VI_DATA2 */
+<     sys_writel(iocfg2_base, 0x0034, 0x1006); /* VI_CLK */
+<     sys_writel(iocfg2_base, 0x0038, 0x1006); /* VI_DATA7 */
+---
+>     void *iocfg3_base = sys_config_get_reg_iocfg3();
+>     void *iocfg_base = sys_config_get_reg_iocfg();
+>     sys_writel(iocfg3_base, 0x0030, 0x1307); /* HS */ 
+>     sys_writel(iocfg3_base, 0x002C, 0x1307); /* VS */
+>     sys_writel(iocfg2_base, 0x0034, 0x1306); /*CLK */
+>     //sys_writel(iocfg2_base, 0x005C, 0x1201); /* EP */
+>     // sys_writel(iocfg_base, 0x00DC, 0x1201); /* TXD */
+>     // sys_writel(iocfg_base, 0x00D8, 0x1301); /* RXD */
+>     sys_writel(iocfg2_base, 0x0038, 0x1106); /* VI_DATA7 */
+42,43c79,105
+<     sys_writel(iocfg2_base, 0x0040, 0x1006); /* VI_DATA4 */
+<     sys_writel(iocfg2_base, 0x0044, 0x1006); /* VI_DATA5 */
+---
+>     sys_writel(iocfg2_base, 0x0064, 0x1206); /* VI_DATA5 */
+>     sys_writel(iocfg2_base, 0x0060, 0x1206); /* VI_DATA4 */
+>     sys_writel(iocfg2_base, 0x0024, 0x1106); /* VI_DATA3 */
+>     sys_writel(iocfg2_base, 0x0070, 0x1206); /* VI_DATA2 */
+>     sys_writel(iocfg2_base, 0x006C, 0x1206); /* VI_DATA1 */
+>     sys_writel(iocfg2_base, 0x0068, 0x1206); /* VI_DATA0 */
+> }
+> static void vi_bt601_mode_mux(void)     
+> {
+>     printk("*************************bt601\n");
+>     void *iocfg2_base = sys_config_get_reg_iocfg2();
+>     void *iocfg3_base = sys_config_get_reg_iocfg3();
+>     void *iocfg_base = sys_config_get_reg_iocfg();
+>     sys_writel(iocfg2_base, 0x0054, 0x1205); /* HS */
+>     sys_writel(iocfg3_base, 0x0030, 0x1307); /* VS */
+>     sys_writel(iocfg2_base, 0x0034, 0x1306); /*CLK */
+>     //sys_writel(iocfg2_base, 0x005C, 0x1201); /* EP */
+>     // sys_writel(iocfg_base, 0x00DC, 0x1201); /* TXD */
+>     // sys_writel(iocfg_base, 0x00D8, 0x1301); /* RXD */
+>     sys_writel(iocfg2_base, 0x0038, 0x1106); /* VI_DATA7 */
+>     sys_writel(iocfg2_base, 0x003C, 0x1006); /* VI_DATA6 */
+>     sys_writel(iocfg2_base, 0x0064, 0x1206); /* VI_DATA5 */
+>     sys_writel(iocfg2_base, 0x0060, 0x1206); /* VI_DATA4 */
+>     sys_writel(iocfg2_base, 0x0024, 0x1106); /* VI_DATA3 */
+>     sys_writel(iocfg2_base, 0x0070, 0x1206); /* VI_DATA2 */
+>     sys_writel(iocfg2_base, 0x006C, 0x1206); /* VI_DATA1 */
+>     sys_writel(iocfg3_base, 0x0068, 0x1206); /* VI_DATA0 */
+680a743,750
+>         case VI_CMOS_BT601_MODE:
+>             mipi_rx_pin_mux(MIPI_RX_1);
+>             vi_bt601_mode_mux();
+>             break;
+>         // case VI_CMOS_BT656_MODE:
+>         //     mipi_rx_pin_mux(MIPI_RX_1);
+>         //     vi_bt656_mode_mux();
+>         //     break;
+diff -r sysconfig12/pin_mux.h sysconfig/pin_mux.h
+85c85,86
+<     VI_THERMO_MODE_T3 = 4
+---
+>     VI_THERMO_MODE_T3 = 4,
+>     VI_CMOS_BT601_MODE
+diff -r sysconfig12/sys_cfg.c sysconfig/sys_cfg.c
+29a30
+> #define SENSOR_NAME_HW   "hw"
+31a33
+> #define SENSOR_NAME_ISR2006 "isr2006"
+155a158
+> 
+356c359
+<         clock = 0x8001;
+---
+>         clock = 0x8001;//37
+360,361c363,366
+<     } else if (strncmp(MIPI_AD, name, len) == 0) {
+<         clock = 0x4010;
+---
+>     } else if (strncmp(SENSOR_NAME_ISR2006, name, len) == 0) {
+>         clock = 0xA001;//27MHZ
+>     } else if ((strncmp(SENSOR_NAME_HW,name,len))) {
+>         clock = 0xA010;
+379c384
+<     if ((strncmp("bt1120", name, len) == 0) || (strncmp("bt601", name, len) == 0)) {
+---
+>     if ((strncmp("bt1120", name, len) == 0) ) {
+402a408,423
+> static int is_coms_bt601(const char *name, unsigned int name_len)
+> {
+>     unsigned int len;
+> 
+>     if (name_len == 0) {
+>         sys_config_print("name len is 0!\n");
+>         return 0;
+>     }
+>     len = SENSOR_NAME_LEN;
+> 
+>     if (strncmp("bt601", name, len) == 0) {
+>         return 1;
+>     } else {
+>         return 0;
+>     }
+> }
+514,515c535,538
+<             g_vi_intf_type = VI_CMOS_BT656_MODE;
+<         } else if (is_thermo_sensor(sensor_name, SENSOR_NAME_LEN)) {
+---
+>             g_vi_intf_type = VI_CMOS_BT656_MODE;}
+>         else if ((index == 1 || index == 3) && is_coms_bt601(sensor_name, SENSOR_NAME_LEN)) {
+>             g_vi_intf_type = VI_CMOS_BT601_MODE;} 
+>         else if (is_thermo_sensor(sensor_name, SENSOR_NAME_LEN)) {

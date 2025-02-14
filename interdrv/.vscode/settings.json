@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "ot_osal.h": "c",
+        "ot_adc.h": "c"
+    }
+}
